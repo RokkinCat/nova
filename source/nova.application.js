@@ -1,0 +1,3 @@
+var NovaApplication = NovaObject.extend({
+
+});

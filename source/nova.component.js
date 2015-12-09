@@ -1,0 +1,3 @@
+var NovaComponent = NovaObject.extend({
+	
+});

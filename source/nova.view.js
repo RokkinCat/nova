@@ -1,0 +1,3 @@
+var NovaView = NovaObject.extend({
+	
+});

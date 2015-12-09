@@ -1,0 +1,3 @@
+var NovaCollection = NovaObject.extend({
+	
+});

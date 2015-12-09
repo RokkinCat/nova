@@ -1,0 +1,3 @@
+var NovaModel = NovaObject.extend({
+	
+});
