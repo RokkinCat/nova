@@ -5,6 +5,22 @@ var Nova = NovaObject.extend( (function() {
 
 	return {
 		application: function(name) {
+			if(!Utils.isString(name)) {
+				throw new Error("application name must be a String");
+			}
+
+			name = Utils.trim(name);
+
+			if(Utils.isEmpty(name)) {
+				throw new Error("application name must not be empty");
+			}
+
+			if(!applications[name]) {
+				applications[name] = new NovaApplication(name);
+			}
+
+			currentApplication = applications[name]
+
 			return this;
 		},
 
