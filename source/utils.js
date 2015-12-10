@@ -1,7 +1,45 @@
 var Utils = {
+	// CHECKING RELATED METHODS
 	isString: function(object) {
 		return (typeof object !== "undefined" && object !== null) &&
 		       Object.prototype.toString.call(object) === "[object String]";
+	},
+
+	isFunction: function(object) {
+		return (typeof object !== "undefined" && object !== null) &&
+		       Object.prototype.toString.call(object) === "[object Function]";
+	},
+
+	isBoolean: function(object) {
+		return (typeof object !== "undefined" && object !== null) &&
+		       Object.prototype.toString.call(object) === "[object Boolean]";
+	},
+
+	isArray: function(object) {
+		return (typeof object !== "undefined" && object !== null) &&
+		       Object.prototype.toString.call(object) === "[object Array]";
+	},
+
+	isString: function(object) {
+		return (typeof object !== "undefined" && object !== null) &&
+		       Object.prototype.toString.call(object) === "[object String]";
+	},
+
+	isNumber: function(object) {
+		return (typeof object !== "undefined" && object !== null) &&
+		       Object.prototype.toString.call(object) === "[object Number]";
+	},
+
+	isNaN: function(object) {
+		return Utils.isNumber(object) && object !== object
+	},
+
+	isNull: function(object) {
+		return (object === null)
+	},
+
+	isUndefined: function(object) {
+		return (typeof object === "undefined")
 	},
 	
 	isEmpty: function(object) {
@@ -19,6 +57,7 @@ var Utils = {
 		return false;
 	},
 
+	// STRING RELATED METHODS
 	trim: (function() {
 		if (String.prototype.trim) {
 			return function(str) { return String.prototype.trim.call(str); };

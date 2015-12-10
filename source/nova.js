@@ -19,24 +19,40 @@ var Nova = NovaObject.extend( (function() {
 				applications[name] = new NovaApplication(name);
 			}
 
-			currentApplication = applications[name]
+			currentApplication = applications[name];
 
 			return this;
 		},
 
 		model: function(name) {
+			if(Utils.isNull(currentApplication)) {
+				throw new Error("An appication must be specified in order to define a model")
+			}
+
 			return this;
 		},
 
 		collection: function(name) {
+			if(Utils.isNull(currentApplication)) {
+				throw new Error("An appication must be specified in order to define a collection")
+			}
+
 			return this;
 		},
 
 		view: function(name) {
+			if(Utils.isNull(currentApplication)) {
+				throw new Error("An appication must be specified in order to define a view")
+			}
+
 			return this;
 		},
 
 		component: function(name) {
+			if(Utils.isNull(currentApplication)) {
+				throw new Error("An appication must be specified in order to define a component")
+			}
+
 			return this;
 		},
 
@@ -45,6 +61,15 @@ var Nova = NovaObject.extend( (function() {
 		},
 
 		definition: function(baseClassName, generator) {
+			if(Utils.isUndefined(generator)) {
+				generator = baseClassName;
+				baseClassName = undefined;
+			}
+
+			if(!Utils.isFunction(generator)) {
+				throw new Error("definition generator must be a function")
+			}
+
 			return this;
 		};
 	};
