@@ -17,15 +17,19 @@
   },
   "homepage": "https://github.com/rokkincat/nova",
   "devDependencies": {
-    "chalk": "^0.5.1",
-    "gulp": "^3.8.10",
-    "gulp-cached": "^1.0.2",
-    "gulp-concat": "^2.4.3",
-    "gulp-load-plugins": "^0.8.0",
-    "gulp-plumber": "^0.6.6",
-    "gulp-replace": "^0.5.3",
-    "gulp-rimraf": "^0.1.1",
-    "gulp-uglify": "^1.0.2",
-    "gulp-util": "^3.0.2"
+    "chalk": "^1.1.1",
+    "gulp": "^3.9.0",
+    "gulp-cached": "^1.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-util": "^3.0.7",
+    "gulp-wrap": "^0.11.0",
+    "jshint": "^2.8.0"
   }
 }

@@ -20,30 +20,25 @@ var Utils = {
 		       Object.prototype.toString.call(object) === "[object Array]";
 	},
 
-	isString: function(object) {
-		return (typeof object !== "undefined" && object !== null) &&
-		       Object.prototype.toString.call(object) === "[object String]";
-	},
-
 	isNumber: function(object) {
 		return (typeof object !== "undefined" && object !== null) &&
 		       Object.prototype.toString.call(object) === "[object Number]";
 	},
 
 	isNaN: function(object) {
-		return Utils.isNumber(object) && object !== object
+		return (Utils.isNumber(object) && object !== object);
 	},
 
 	isNull: function(object) {
-		return (object === null)
+		return (object === null);
 	},
 
 	isUndefined: function(object) {
-		return (typeof object === "undefined")
+		return (typeof object === "undefined");
 	},
 	
 	isEmpty: function(object) {
-		if (object == null) {
+		if (Utils.isNull(object) || Utils.isUndefined(object)) {
 			return true;
 		} else if (isString(object)) {
 			return trim(object).length === 0;
@@ -61,7 +56,7 @@ var Utils = {
 	trim: (function() {
 		if (String.prototype.trim) {
 			return function(str) { return String.prototype.trim.call(str); };
-		} else
+		} else {
 			return function(str) { return str.replace(/^\s+/, '').replace(/\s+$/, ''); };
 		}
 	})()

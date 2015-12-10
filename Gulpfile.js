@@ -1,20 +1,20 @@
 var gulp        = require('gulp'),
     plugins     = require('gulp-load-plugins')(),
     chalk       = require('chalk'),
-    gutil       = require('gulp-util'),
-    cfg         = require('./config');
+    gutil       = require('gulp-util');
 
 var cfg = {
 	version: "0.0.1",
 	version_pattern: "{{VERSION}}",
 	build_dir: 'build',
-	seperator: "\n;\n",
+	seperator: "\n",
 
 	source_files: [
 		"./source/utils.js",
 		"./source/nova.object.js",
 		"./source/nova.*.js",
 		"./source/nova.js"
+		"./source/exports.js"
 	],
 
 	output_filename: "nova.js",
@@ -34,19 +34,25 @@ var cfg = {
 };
 
 gulp.task('clean', function() {
-	gulp.src(cfg.build_dir, {read: false})
+	gulp.src(cfg.build_dir + "/**", {read: false})
 	    .pipe(plugins.rimraf({force: true}));
 });
 
 gulp.task('compile', function() {
 	gulp.src(cfg.source_files)
-	    .pipe(plugins.replace(cfg.version_pattern, cfg.version)
-	    .pipe(plugins.concat(output_filename, {newLine: cfg.seperator}))
-	    .pipe(gulp.dest(output.dir));
+	    .pipe(plugins.replace(cfg.version_pattern, cfg.version))
+	    .pipe(plugins.jshint())
+	    .pipe(plugins.concat(cfg.output_filename, {newLine: cfg.seperator}))
+	    .pipe(plugins.jshint.reporter('default'))
+	    .pipe(plugins.wrap("(function(exports){\r\n<%= contents %>\r\n})(this);"))
+	    .pipe(gulp.dest(cfg.build_dir))
+	    .pipe(plugins.uglify())
+	    .pipe(plugins.rename(cfg.output_min_filename))
+	    .pipe(gulp.dest(cfg.build_dir));
 });
 
 gulp.task('watch', function() {
-	gulp.watch(paths.input, ['compile']).on('change', cfg.showChange);
+	gulp.watch(cfg.source_files, ['compile']).on('change', cfg.showChange);
 });
 
-gulp.task('default', ['clean', 'compile', 'watch']);
+gulp.task('default', ['compile', 'watch']);
